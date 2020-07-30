@@ -22,35 +22,25 @@ stages:
       inputs:
         versionSpec: '10.x'
 
-    - script: |
-        npm install
-        npm run build
-      displayName: 'npm install and build'
+    - task: Npm@1
+      displayName: 'npm install'
+      inputs:
+        workingDir: 'clock-app'
+        command: install
 
-    # - task: Npm@1
-    #   displayName: 'npm install'
-    #   inputs:
-    #     workingDir: 'clock-app'
-    #     command: install
+    - task: Npm@1
+      displayName: 'npm build'
+      inputs:
+        workingDir: 'clock-app'
+        command: custom
+        customCommand: run-script build
 
-    # - task: Npm@1
-    #   displayName: 'npm build'
-    #   inputs:
-    #     workingDir: 'clock-app'
-    #     command: custom
-    #     customCommand: run-script build
-
-# - script: |
-#     npm install
-#     npm run build
-#   displayName: 'npm install and build'
-
-# - task: Npm@1
-#       displayName: 'npm build'
-#       inputs:
-#         workingDir: 'pmo-app'
-#         command: custom
-#         customCommand: run-script build
+    - task: Npm@1
+      displayName: 'npm build'
+      inputs:
+        workingDir: 'pmo-app'
+        command: custom
+        customCommand: run-script build
 
 # - task: CopyFiles@2
 #   displayName: 'Copy Files'
