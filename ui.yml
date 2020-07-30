@@ -43,13 +43,6 @@ stages:
         customCommand: run-script build
 
     - task: CopyFiles@2
-      displayName: 'Copy Files'
-      inputs:
-        SourceFolder: 'clock-app\build'
-        TargetFolder: '$(build.artifactstagingdirectory)'
-        CleanTargetFolder: true
-
-    - task: CopyFiles@2
       inputs:
         SourceFolder: 'clock-app'
         Contents: |
