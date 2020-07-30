@@ -22,12 +22,11 @@ stages:
       inputs:
         versionSpec: '10.x'
 
-
-    - task: Npm@1
-      displayName: 'npm install'
-      inputs:
-        workingDir: 'clock-app'
-        command: install
+    # - task: Npm@1
+    #   displayName: 'npm install'
+    #   inputs:
+    #     workingDir: 'clock-app'
+    #     command: install
 
     # - task: Npm@1
     #   displayName: 'npm build'
