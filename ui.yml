@@ -35,13 +35,6 @@ stages:
         command: custom
         customCommand: run-script build
 
-    - task: Npm@1
-      displayName: 'npm build'
-      inputs:
-        workingDir: 'pmo-app'
-        command: custom
-        customCommand: run-script build
-
     - task: CopyFiles@2
       inputs:
         SourceFolder: 'clock-app'
