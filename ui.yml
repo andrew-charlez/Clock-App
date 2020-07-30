@@ -11,21 +11,21 @@ pool:
 
 stages:
 # Build
-- stage: Build
-  displayName: 'Build App'
-jobs:
-- job: Build
+  - stage: Build
+    displayName: 'Build App'
+    jobs:
+    - job: Build
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+        displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+# - script: |
+#     npm install
+#     npm run build
+#   displayName: 'npm install and build'
 
 # - task: Npm@1
 #       displayName: 'npm build'
