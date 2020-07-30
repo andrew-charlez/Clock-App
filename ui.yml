@@ -7,7 +7,14 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-18.04"
+
+stages:
+# Build
+- stage: Build
+  displayName: 'Build App'
+job:
+- job: Build
 
 steps:
 - task: NodeTool@0
@@ -19,3 +26,22 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+# - task: Npm@1
+#       displayName: 'npm build'
+#       inputs:
+#         workingDir: 'pmo-app'
+#         command: custom
+#         customCommand: run-script build
+
+# - task: CopyFiles@2
+#   displayName: 'Copy Files'
+#   inputs:
+#     SourceFolder: 'clock-app\build'
+#     TargetFolder: '$(build.artifactstagingdirectory)'
+#     CleanTargetFolder: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+    ArtifactName: 'www' # output artifact named www
