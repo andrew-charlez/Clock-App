@@ -16,10 +16,10 @@ stages:
     jobs:
     - job: Build
 
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
+      steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
         displayName: 'Install Node.js'
 
 # - script: |
