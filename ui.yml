@@ -28,12 +28,12 @@ stages:
         workingDir: 'clock-app'
         command: install
 
-    # - task: Npm@1
-    #   displayName: 'npm build'
-    #   inputs:
-    #     workingDir: 'pmo-app'
-    #     command: custom
-    #     customCommand: run-script build
+    - task: Npm@1
+      displayName: 'npm build'
+      inputs:
+        workingDir: 'clock-app'
+        command: custom
+        customCommand: run-script build
 
 # - script: |
 #     npm install
