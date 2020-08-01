@@ -23,9 +23,14 @@ stages:
         versionSpec: '10.x'
 
     - script: |
+        npm install webpack webpack-cli --save-dev
+        npx webpack --config webpack.config.js
+
+    - script: |
         npm install
         npm run build
       displayName: 'npm install and build'
+
 
 
     # - task: CopyFiles@2
