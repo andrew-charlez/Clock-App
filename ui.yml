@@ -9,6 +9,13 @@ trigger:
 pool:
   vmImage: "ubuntu-18.04"
 
+variables:
+  dockerRegistryServiceConnection: 'CLAP'
+  imageRepository: 'clock-app'
+  containerRegistry: 'myClockappcontainer.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(build.BuildId)'
+
 stages:
 # Build
 - stage: Build
@@ -30,7 +37,6 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Files'
       inputs:
-        SourceFolder:
         Contents: 'build/**' # Pull the build directory (React)
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
@@ -39,11 +45,15 @@ stages:
         pathtoPublish: $(Build.ArtifactStagingDirectory)
         ArtifactName: 'build'
 
-    # - task: CopyFiles@2
-    #   inputs:
-    #     SourceFolder: 'clock-app'
-    #     Contents: |
-    #       **\*.js
-    #       package.json
-    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    #     CleanTargetFolder: true
+  - job: Docker_Build_Push
+
+    steps:
+    - task: Docker@2
+      displayName: Build an image and push to ACR
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
