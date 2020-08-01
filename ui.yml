@@ -35,16 +35,16 @@ stages:
         command: custom
         customCommand: run-script build
 
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: 'clock-app'
-        Contents: |
-          **\*.js
-          package.json
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        CleanTargetFolder: true
+    # - task: CopyFiles@2
+    #   inputs:
+    #     SourceFolder: 'clock-app'
+    #     Contents: |
+    #       **\*.js
+    #       package.json
+    #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    #     CleanTargetFolder: true
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathtoPublish: $(Build.ArtifactStagingDirectory)
-        ArtifactName: 'build'
+    # - task: PublishBuildArtifacts@1
+    #   inputs:
+    #     pathtoPublish: $(Build.ArtifactStagingDirectory)
+    #     ArtifactName: 'build'
