@@ -30,8 +30,14 @@ stages:
     - task: CopyFiles@2
       displayName: 'Copy Files'
       inputs:
+        SourceFolder:
         Contents: 'build/**' # Pull the build directory (React)
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathtoPublish: $(Build.ArtifactStagingDirectory)
+        ArtifactName: 'build'
 
     # - task: CopyFiles@2
     #   inputs:
@@ -41,8 +47,3 @@ stages:
     #       package.json
     #     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     #     CleanTargetFolder: true
-
-    # - task: PublishBuildArtifacts@1
-    #   inputs:
-    #     pathtoPublish: $(Build.ArtifactStagingDirectory)
-    #     ArtifactName: 'build'
